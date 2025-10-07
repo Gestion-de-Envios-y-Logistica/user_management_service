@@ -6,11 +6,22 @@ import re
 class HashedPassword:
     
     hashed: str
-
+    
     def __post_init__(self):
         if not self._is_valid_password(self.hashed):
-            raise BusinessNotFoundError(self.hashed, "La contraseña no cumple con los requisitos de seguridad.")
-
+            raise BusinessNotFoundError(self.hashed, "La contraseña no puede estar vacía.")
+        
+    def __str__(self) -> str:
+        return self.hashed
+    
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, HashedPassword):
+            return False
+        return self.hashed == other.hashed
+    
+    def __hash__(self) -> int:
+        return hash(self.hashed)
+    
     @staticmethod
     def _is_valid_password(password: str) -> bool:
         
