@@ -1,22 +1,23 @@
 from application.ports.UserRepository import UserRepository
 from domain.model.user import User
 from application.dto.UserDto import UserDto, UserResponseDto
-from domain.model.factory import UserRegisterFactory
+from domain.model.factory.UserRegisterFactory import UserRegisterFactory
 
 
 class RegisterUserUseCase:
+
     def __init__(self, user_repository: UserRepository):
         self.user_repository = user_repository
         
 
-    def execute(self, user_data: UserDto) -> str:
+    async def execute(self, user_data: UserDto) -> str:
         
         new_user = UserRegisterFactory.create(
             email=user_data.email,
             hashed_password=user_data.hashed_password
         )
         
-        self.user_repository.add(new_user)
+        await self.user_repository.add(new_user)
         
         return self._build_user_response_dto(new_user)
     

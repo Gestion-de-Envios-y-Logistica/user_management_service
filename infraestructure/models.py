@@ -13,6 +13,5 @@ class EmailDto(BaseModel):
 class UserResponseDto(BaseModel):
     
     user_id: str
-    email: EmailStr
-    is_active: bool
-    token: str = None
+    email: str
+    is_active: str

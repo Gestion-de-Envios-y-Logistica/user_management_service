@@ -18,4 +18,4 @@ class UserResponseDto:
     user_id: str
     email: str
     is_active: bool
-    token: str = None
+

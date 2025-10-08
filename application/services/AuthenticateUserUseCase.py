@@ -1,13 +1,13 @@
 import uuid
 from domain.model.user import User
 from application.ports.UserRepository import UserRepository
-from application.ports.TokenService import TokenRepository
+from application.ports.TokenService import TokenService
 from application.dto.UserDto import UserDto, UserResponseDto
 from domain.model.exception.business_exception import BusinessNotFoundError
 
 class AuthenticateUserUseCase:
     
-    def __init__(self, user_repository: UserRepository, token_service: TokenRepository):
+    def __init__(self, user_repository: UserRepository, token_service: TokenService):
         self.user_repository = user_repository
         self.token_service = token_service
 

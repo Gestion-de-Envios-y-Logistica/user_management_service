@@ -12,4 +12,3 @@ class UserRepository(ABC):
     async def find_by_email(self, email: str) -> Optional[User]:
         pass
     
-    
